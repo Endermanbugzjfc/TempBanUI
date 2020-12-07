@@ -13,6 +13,8 @@ use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\utils\Config;
 use pocketmine\utils\TextFormat;
 
+use jojoe77777\FormAPI\{CustomForm, SimpleForm};
+
 class Main extends PluginBase implements Listener {
 	
 	public $staffList = [];
@@ -85,8 +87,7 @@ class Main extends PluginBase implements Listener {
     }
 	
 	public function openPlayerListUI($player){
-		$api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
-		$form = $api->createSimpleForm(function (Player $player, $data = null){
+		$form = new SimpleForm(function (Player $player, $data = null){
 			$target = $data;
 			if($target === null){
 				return true;
@@ -118,8 +119,7 @@ class Main extends PluginBase implements Listener {
 	}
 	
 	public function openTbanUI($player){
-		$api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
-		$form = $api->createCustomForm(function (Player $player, array $data = null){
+		$form = new CustomForm(function (Player $player, array $data = null){
 			$result = $data[0];
 			if($result === null){
 				return true;
@@ -165,8 +165,7 @@ class Main extends PluginBase implements Listener {
 	}
 
 	public function openTcheckUI($player){
-		$api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
-		$form = $api->createSimpleForm(function (Player $player, $data = null){
+		$form = new SimpleForm(function (Player $player, $data = null){
 			if($data === null){
 				return true;
 			}
@@ -194,8 +193,7 @@ class Main extends PluginBase implements Listener {
 	}
 	
 	public function openInfoUI($player){
-		$api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
-		$form = $api->createSimpleForm(function (Player $player, int $data = null){
+		$form = new SimpleForm(function (Player $player, int $data = null){
 		$result = $data;
 		if($result === null){
 			return true;
